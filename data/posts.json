@@ -1,0 +1,18 @@
+[
+	{
+		"title": "🧪 코딩 테스트로 공부한 정리 노트",
+		"description": "코딩 테스트를 풀면서 유용했거나 처음 보는 개념을 학습한 내용을 정리한 자료입니다.",
+		"date": "2022-10-28",
+		"category": "CS",
+		"path": "coding-test-note",
+		"featured": false
+	},
+	{
+		"title": "😵‍💫 빙글빙글 돌아가는 2021년을 보내며 쓰는 회고록",
+		"description": "올 한 해를 정리하고 기억하기 위해 작성한 회고록으로, 해당 기록을 통해 더욱 성장하고자 합니다.",
+		"date": "2021-12-31",
+		"category": "Career",
+		"path": "review-2021",
+		"featured": false
+	}
+]

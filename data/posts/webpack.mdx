@@ -1,0 +1,76 @@
+---
+title: "🎒 웹팩이란"
+thumbSrc: "/static/images/webpack.png"
+date: "2021-08-27"
+tags: ["FE"]
+draft: false
+summary: "웹팩을 학습하며 정리한 자료로 모듈과 모듈 번들링에 대해 설명합니다."
+images: ["/static/images/webpack.png"]
+---
+
+# 📌 목차
+
+![Webpack]/images/webpack.png)
+
+- **💁🏻 웹팩이란**
+
+- **📂 모듈이란**
+
+- **🤔 웹팩에서의 모듈**
+
+- **🗃️ 모듈 번들링이란**
+
+---
+
+# 💁🏻 웹팩이란
+
+웹팩이란 최신 프론트엔드 프레임워크에서 **가장 많이 사용되는 모듈 번들러 (Module Bundler)** 입니다. 여기서 모듈 번들러란 **웹 애플리케이션을 구성하는 자원 (HTML, CSS, Javscript, Images 등)을 모두 각각의 모듈로 보고 이를 조합해서 병합된 하나의 결과물을 만드는 도구**를 의미합니다.
+
+---
+
+# 📂 모듈이란
+
+```javascript
+// math.js
+function sum(a, b) {
+	return a + b
+}
+
+function substract(a, b) {
+	return a - b
+}
+
+const pi = 3.14
+
+export { sum, substract, pi }
+```
+
+모듈이란 **프로그래밍 관점에서 특정 기능을 갖는 작은 코드 단위**를 뜻합니다. 자바스크립트의 경우에는 위와 같은 코드를 모듈이라고 하며, 해당 `math.js 파일`은 아래와 같이 3가지 기능을 가지고 있는 모듈입니다.
+
+- 두 숫자의 합을 구하는 `sum() 함수`
+- 두 숫자의 차를 구하는 `substract() 함수`
+- 원주율 값을 갖는 `pi 상수₩
+
+이처럼 **성격이 비슷한 기능들을 하나의 의미 있는 파일로 관리**하면 모듈이 됩니다.
+
+---
+
+# 🤔 웹팩에서의 모듈이란
+
+웹팩에서 지칭하는 모듈이라는 개념은 위와 같이 자바스크립트 모듈에만 국한되지 않고 **웹 애플리케이션을 구성하는 모든 자원**을 의미합니다. 웹 애플리케이션을 제작하려면 `HTML`, `CSS`, `Javascript`, `Images`, `Font` 등 많은 파일들이 필요한데, 각 파일 하나 하나가 모두 모듈입니다.
+
+---
+
+# 🗃️ 모듈 번들링이란
+
+![Webpack]/images/webpack2.png)
+
+_Source: `Webpack`_
+
+위의 그림과 같이 **웹 애플리케이션을 구성하는 몇십, 몇백개의 자원들을 하나의 파일로 병합 및 압축 해주는 동작**을 모듈 번들링이라고 합니다.
+
+---
+
+### 🔗 Reference
+
+[웹팩 핸드북](https://joshua1988.github.io/webpack-guide/webpack/what-is-webpack.html#%EC%9B%B9%ED%8C%A9%EC%9D%B4%EB%9E%80)

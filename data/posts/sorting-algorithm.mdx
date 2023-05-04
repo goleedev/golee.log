@@ -1,0 +1,316 @@
+---
+title: "👀 Sorting Algorithm 한번에 이해하기"
+thumbSrc: "/static/images/algo1.png"
+date: "2021-06-11"
+tags: ["CS"]
+draft: false
+summary: "정렬 알고리즘을 학습하면서 정리한 자료로, 각 정렬의 시간 복잡도와 특징을 설명하고 있습니다."
+images:
+  [
+    "/static/images/algo1.png",
+    "/static/images/bubble1.png",
+    "/static/images/bubble2.png",
+    "/static/images/selection1.png",
+    "/static/images/selection2.png",
+    "/static/images/insertion1.png",
+    "/static/images/insertion2.png",
+    "/static/images/quick1.png",
+    "/static/images/merge1.png",
+    "/static/images/heap1.png",
+  ]
+---
+
+# 📌 목차
+
+![Sorting Algorithm]/images/algo1.png)
+
+- **💁🏻 정렬 알고리즘이란**
+
+- **🧼 버블 정렬 (Bubble Sort)**
+
+- **🪙 삽입 정렬(Insertion sort)**
+
+- **🛒 선택정렬 (Selection sort)**
+
+- **⚡ 퀵 정렬 (Quick sort)**
+
+- **🤲 병합 정렬 (Merge Sort)**
+
+- **⏺️ 힙 정렬 (Heap Sort)**
+
+- **⌛ 시간 복잡도 (Time Complexity)**
+
+---
+
+# 💁🏻 정렬 알고리즘이란
+
+컴퓨터 과학과 수학에서 `정렬 알고리즘 (sorting algorithm)`이란 **원소들을 번호순이나 사전 순서와 같이 일정한 순서대로 열거하는 알고리즘**입니다.
+
+이는 컴퓨터에서 가장 많이 이용되는 연산 중 하나이며, **자료검색의 효율성을 측정하고 실용성과 이론 설명 등을 위해서 정렬 알고리즘이 필요**합니다.
+
+이러한 정렬을 수행하는 다양한 알고리즘들이 있으며, **100개 이상의 정렬 알고리즘들이 개발**되어 있습니다.
+
+해당 글에서는 몇 가지 **대표적인 정렬 알고리**즘만 다룰 예정입니다.
+
+---
+
+# 🧼 버블 정렬 (Bubble Sort)
+
+> 2개의 인접한 데이터를 비교해서 앞에 있는 데이터가 뒤에 있는 데이터보다 크면 자리를 바꾸는 정렬 알고리즘입니다.
+
+## 그림으로 이해하기
+
+![Bubble 1]/images/bubble1.png)
+
+![Bubble 2]/images/bubble2.png)
+
+## 코드로 이해하기
+
+```javascript
+function bubbleSort(arr) {
+	for (let i = 0; i < arr.length; i++) {
+		for (let j = 0; j < arr.length - i - 1; j++) {
+			if (arr[j] > arr[j + 1]) {
+				var temp = arr[j]
+
+				arr[j] = arr[j + 1]
+				arr[j + 1] = temp
+			}
+		}
+	}
+
+	console.log(arr)
+}
+```
+
+---
+
+# 🪙 삽입 정렬(Insertion sort)
+
+> 삽입 정렬은 자신보다 앞의 원소가 큰지 작은지 비교를 한후 알맞은 위치를 찾아서 해당 원소를 '삽입' 하는 정렬입니다.
+> 삽입 정렬은 자신보다 앞에 위치한 원소와 비교하므로, 첫번째 index는 이미 정렬되었다고 가정하고 2번째 index부터 정렬을 시작합니다.
+> 따라서 삽입 정렬은 두 번째 원소부터 시작해서 그 앞의 원소들과 비교해 삽입할 위치를 지정한 후, 지정한 자리에 원소를 삽입해 정렬합니다.
+
+## 그림으로 이해하기
+
+![Insertion 1]/images/insertion1.png)
+
+![Insertion 2]/images/insertion2.png)
+
+## 코드로 이해하기
+
+```javascript
+function insertionSort(arr, n) {
+	let i, key, j
+
+	for (i = 1; i < n; i++) {
+		key = arr[i]
+		j = i - 1
+
+		while (j >= 0 && arr[j] > key) {
+			arr[j + 1] = arr[j]
+			j = j - 1
+		}
+		arr[j + 1] = key
+	}
+}
+```
+
+---
+
+# 🛒 선택정렬 (Selection sort)
+
+> 선택정렬은 정렬되지 않은 데이터에서 가장 작은 값을 뽑아 가장 앞의 데이터와 교환하는 정렬 방식입니다.
+
+## 그림으로 이해하기
+
+![Selection 1]/images/selection1.png)
+
+![Selection 2]/images/selection2.png)
+
+## 코드로 이해하기
+
+```javascript
+function swap(arr, xp, yp) {
+	var temp = arr[xp]
+	arr[xp] = arr[yp]
+	arr[yp] = temp
+}
+
+function selectionSort(arr, n) {
+	var i, j, min_idx
+
+	for (i = 0; i < n - 1; i++) {
+		min_idx = i
+		for (j = i + 1; j < n; j++) if (arr[j] < arr[min_idx]) min_idx = j
+
+		swap(arr, min_idx, i)
+	}
+}
+```
+
+---
+
+# ⚡ 퀵 정렬 (Quick sort)
+
+> 퀵 정렬은 기준점(pivot)을 정해 기준점보다 작은 데이터는 왼쪽, 큰 데이터는 오른쪽으로 정렬하는 방식입니다.
+> 기준점의 각 왼쪽과 오른쪽에는 재귀 용법을 사용하여 상기의 작업을 반복합니다.
+
+## 그림으로 이해하기
+
+![Quick 1]/images/quick1.png)
+
+## 코드로 이해하기
+
+```javascript
+function quickSort(arr) {
+	if (arr.length < 2) {
+		return arr
+	}
+
+	let pivot = [arr[0]]
+	let left = []
+	let right = []
+
+	for (let i = 1; i < arr.length; i++) {
+		if (arr[i] < pivot) {
+			left.push(arr[i])
+		} else if (arr[i] > pivot) {
+			right.push(arr[i])
+		} else {
+			pivot.push(arr[i])
+		}
+	}
+
+	console.log(`left: ${left}, pivot: ${pivot}, right: ${right}`)
+	return quickSort(left).concat(pivot, quickSort(right))
+}
+```
+
+---
+
+# 🤲 병합 정렬 (Merge Sort)
+
+> 병합 정렬은 리스트를 절반으로 니느아 비슷한 크기의 두 리스트로 나눈 후, 각 리스트를 재귀적으로 병합 정렬을 이용해 정렬합니다.
+> 그 다음, 두 리스트를 다시 하나의 정렬된 리스트로 합쳐줍니다.
+
+## 그림으로 이해하기
+
+![Merge 1]/images/merge1.png)
+
+## 코드로 이해하기
+
+```javascript
+const merge = function (left, right) {
+	const result = []
+	while (left.length !== 0 && right.length !== 0) {
+		left[0] <= right[0] ? result.push(left.shift()) : result.push(right.shift())
+	}
+
+	return [...result, ...left, ...right]
+}
+
+const mergeSort = function (array) {
+	if (array.length === 1) return array
+
+	const middleIndex = Math.floor(array.length / 2)
+	const left = array.slice(0, middleIndex)
+	const right = array.slice(middleIndex)
+
+	return merge(mergeSort(left), mergeSort(right))
+}
+```
+
+---
+
+# ⏺️ 힙 정렬 (Heap Sort)
+
+> 힙은 큰 키(우선 순위)에 자주 액세스하거나 키(우선 순위) 중심으로 정렬된 시퀀스를 활용해야 할 때 유용한 자료구조입니다.
+> 힙은 한 노드(node)가 최대 두 개의 자식노드(child node)를 가지면서,
+> 마지막 레벨을 제외한 모든 레벨에서 노드들이 꽉 채워진 완전이진트리(complete binary tree)를 기본으로 합니다.
+
+## 그림으로 이해하기
+
+![Heap 1]/images/heap1.png)
+
+## 코드로 이해하기
+
+```javascript
+const buildMaxHeap = (arr) => {
+	let i = Math.floor(arr.length / 2 - 1)
+
+	while (i >= 0) {
+		heapify(arr, i, arr.length)
+		i -= 1
+	}
+}
+
+const heapify = (heap, i, max) => {
+	let index
+	let leftChild
+	let rightChild
+
+	while (i < max) {
+		index = i
+		leftChild = 2 * i + 1
+		rightChild = leftChild + 1
+
+		if (leftChild < max && heap[leftChild] > heap[index]) {
+			index = leftChild
+		}
+
+		if (rightChild < max && heap[rightChild] > heap[index]) {
+			index = rightChild
+		}
+
+		if (index === i) {
+			return
+		}
+
+		swap(heap, i, index)
+		i = index
+	}
+}
+
+const swap = (arr, firstItemIndex, lastItemIndex) => {
+	const temp = arr[firstItemIndex]
+
+	arr[firstItemIndex] = arr[lastItemIndex]
+	arr[lastItemIndex] = temp
+}
+
+const heapSort = (arr) => {
+	buildMaxHeap(arr)
+	lastElement = arr.length - 1
+
+	while (lastElement > 0) {
+		swap(arr, 0, lastElement)
+		heapify(arr, 0, lastElement)
+		lastElement -= 1
+	}
+
+	return arr
+}
+```
+
+---
+
+# ⌛ 시간 복잡도 (Time Complexity)
+
+| **Algorithm**      | **Time Complexity** |             |             |
+| ------------------ | ------------------- | ----------- | ----------- |
+|                    | **Best**            | **Average** | **Worst**   |
+| **Bubble Sort**    | Ω(n)                | θ(n^2)      | O(n^2)      |
+| **Insertion Sort** | Ω(n)                | θ(n^2)      | O(n^2)      |
+| **Selection Sort** | Ω(n^2)              | θ(n^2)      | O(n^2)      |
+| **Quick Sort**     | Ω(n log(n))         | θ(n log(n)) | O(n^2)      |
+| **Merge Sort**     | Ω(n log(n))         | θ(n log(n)) | O(n log(n)) |
+| **Heap Sort**      | Ω(n log(n))         | θ(n log(n)) | O(n log(n)) |
+
+---
+
+### 🔗 References
+
+[GeeksForGeeks](https://www.geeksforgeeks.org/bubble-sort-algorithms-by-using-javascript/)
+
+[Sorting Algorithms](https://www.interviewbit.com/tutorial/sorting-algorithms/)
